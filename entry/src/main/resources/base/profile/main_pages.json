@@ -1,0 +1,11 @@
+{
+  "src": [
+    "pages/entry/Index",
+    "pages/entry/EditPage",
+    "pages/entry/DetailPage",
+    "pages/entry/LoginPage",
+    "pages/entry/test2Page",
+    "pages/entry/for_each/StudyForEach",
+    "pages/other/OtherPage"
+  ]
+}
