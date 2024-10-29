@@ -1,0 +1,28 @@
+{
+  "module": {
+    "name": "OtherModule",
+    "type": "feature",
+    "description": "$string:module_desc",
+    "mainElement": "OtherModuleAbility",
+    "deviceTypes": [
+      "phone",
+      "tablet",
+      "2in1"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "OtherModuleAbility",
+        "srcEntry": "./ets/othermoduleability/OtherModuleAbility.ets",
+        "description": "$string:OtherModuleAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:OtherModuleAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      }
+    ]
+  }
+}

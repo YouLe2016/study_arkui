@@ -44,6 +44,18 @@
           ]
         }
       ]
+    },
+    {
+      "name": "OtherModule",
+      "srcPath": "./OtherModule",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
     }
   ]
 }

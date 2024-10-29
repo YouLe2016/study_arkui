@@ -49,6 +49,27 @@ struct Index {
               console.log("跳转失败: " + err)
             })
         })
+        Button('跳转OtherModuleAbility').onClick(() => {
+          const wantInfo: Want = {
+            // 空表示本设备
+            deviceId: '',
+            // 包名。app.json5
+            bundleName: "com.example.myapplication",
+            // 模块名。module.json5
+            moduleName: 'OtherModule',
+            // UIAbility
+            abilityName: 'OtherModuleAbility',
+            parameters: {
+              info: '来自EntryAbility的参数'
+            }
+          }
+          this.ctx.startAbility(wantInfo)
+            .then(()=>{
+              console.log("跳转成功")
+            }).catch((err: BusinessError)=>{
+              console.log("跳转失败: " + err)
+            })
+        })
       }
       .padding(16)
       .width('100%')
