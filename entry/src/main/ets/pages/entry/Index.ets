@@ -8,73 +8,100 @@ struct Index {
   msg: string = '首页'
   ctx: common.UIAbilityContext = getContext(this) as common.UIAbilityContext
 
+  aboutToAppear(): void {
+    console.log("Index aboutToAppear")
+  }
+
+  onPageShow(): void {
+    console.log("Index onPageShow")
+  }
+
+  onPageHide(): void {
+    console.log("Index onPageHide")
+  }
+
+  aboutToDisappear(): void {
+    console.log("Index aboutToDisappear")
+  }
+
+  onBackPress(): boolean | void {
+    console.log("Index onBackPress")
+  }
+
+  logBuild() {
+    console.log("Index build")
+    return true
+  }
+
   build() {
-    Row() {
-      Column({ space: 10 }) {
-        Text(this.msg)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
+    if (this.logBuild()) {
+      Row() {
+        Column({ space: 10 }) {
+          Text(this.msg)
+            .fontSize(50)
+            .fontWeight(FontWeight.Bold)
 
-        Button('跳转编辑页').onClick(() => {
-          // 普通跳转，下一个页面可以返回此页面
-          router.pushUrl({
-            url: "pages/entry/EditPage"
+          Button('跳转编辑页').onClick(() => {
+            // 普通跳转，下一个页面可以返回此页面
+            router.pushUrl({
+              url: "pages/entry/EditPage"
+            })
           })
-        })
 
-        Button('跳转详情页').onClick(() => {
-          router.pushUrl({
-            url: "pages/entry/DetailPage"
+          Button('跳转详情页').onClick(() => {
+            router.pushUrl({
+              url: "pages/entry/DetailPage"
+            })
           })
-        })
 
-        Button('跳转OtherAbility').onClick(() => {
-          const wantInfo: Want = {
-            // 空表示本设备
-            deviceId: '',
-            // 包名。app.json5
-            bundleName: "com.example.myapplication",
-            // 模块名。module.json5
-            moduleName: 'entry',
-            // UIAbility
-            abilityName: 'OtherAbility',
-            parameters: {
-              info: '来自EntryAbility的参数'
+          Button('跳转OtherAbility').onClick(() => {
+            const wantInfo: Want = {
+              // 空表示本设备
+              deviceId: '',
+              // 包名。app.json5
+              bundleName: "com.example.myapplication",
+              // 模块名。module.json5
+              moduleName: 'entry',
+              // UIAbility
+              abilityName: 'OtherAbility',
+              parameters: {
+                info: '来自EntryAbility的参数'
+              }
             }
-          }
-          this.ctx.startAbility(wantInfo)
-            .then(()=>{
-              console.log("跳转成功")
-            }).catch((err: BusinessError)=>{
+            this.ctx.startAbility(wantInfo)
+              .then(()=>{
+                console.log("跳转成功")
+              }).catch((err: BusinessError)=>{
               console.log("跳转失败: " + err)
             })
-        })
-        Button('跳转OtherModuleAbility').onClick(() => {
-          const wantInfo: Want = {
-            // 空表示本设备
-            deviceId: '',
-            // 包名。app.json5
-            bundleName: "com.example.myapplication",
-            // 模块名。module.json5
-            moduleName: 'OtherModule',
-            // UIAbility
-            abilityName: 'OtherModuleAbility',
-            parameters: {
-              info: '来自EntryAbility的参数'
+          })
+          Button('跳转OtherModuleAbility').onClick(() => {
+            const wantInfo: Want = {
+              // 空表示本设备
+              deviceId: '',
+              // 包名。app.json5
+              bundleName: "com.example.myapplication",
+              // 模块名。module.json5
+              moduleName: 'OtherModule',
+              // UIAbility
+              abilityName: 'OtherModuleAbility',
+              parameters: {
+                info: '来自EntryAbility的参数'
+              }
             }
-          }
-          this.ctx.startAbility(wantInfo)
-            .then(()=>{
-              console.log("跳转成功")
-            }).catch((err: BusinessError)=>{
+            this.ctx.startAbility(wantInfo)
+              .then(()=>{
+                console.log("跳转成功")
+              }).catch((err: BusinessError)=>{
               console.log("跳转失败: " + err)
             })
-        })
+          })
+        }
+        .padding(16)
+        .width('100%')
       }
-      .padding(16)
-      .width('100%')
+      .height('100%')
     }
-    .height('100%')
   }
 }
 
