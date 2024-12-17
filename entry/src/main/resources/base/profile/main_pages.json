@@ -6,6 +6,7 @@
     "pages/entry/LoginPage",
     "pages/entry/test2Page",
     "pages/entry/for_each/StudyForEach",
-    "pages/other/OtherPage"
+    "pages/other/OtherPage",
+    "pages/entry/layout/LayoutPage"
   ]
 }
