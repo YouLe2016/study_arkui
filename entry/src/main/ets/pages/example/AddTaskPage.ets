@@ -1,20 +1,37 @@
 @Entry
 @Component
 struct AddTaskPage {
-  @State message: string = 'Hello World';
-
   build() {
-    RelativeContainer() {
-      Text(this.message)
-        .id('AddTaskHelloWorld')
-        .fontSize(50)
+    Column() {
+      Text($r("app.string.createTask"))
+        .fontSize(26)
         .fontWeight(FontWeight.Bold)
-        .alignRules({
-          center: { anchor: '__container__', align: VerticalAlign.Center },
-          middle: { anchor: '__container__', align: HorizontalAlign.Center }
-        })
+      Text($r("app.string.title"))
+        .fontColor(Color.Black)
+        .fontSize(16)
+        .titleTextStyle()
+      TextInput({
+        placeholder: $r("app.string.placeholder_inputTaskName")
+      })
+        // .borderRadius(0)
+        // .backgroundColor(Color.Transparent)
+        // ------------------------------------------------
+        // .underlineColor(Color.Pink)
+        .myShowUnderline()
+
     }
     .height('100%')
     .width('100%')
+    .padding(10)
   }
+
+  @Styles
+  titleTextStyle() {
+    .backgroundColor(Color.Pink)
+  }
+}
+
+@Extend(TextInput)
+function myShowUnderline() {
+  .showUnderline(true)
 }

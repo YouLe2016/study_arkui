@@ -95,6 +95,18 @@
     {
       "name": "AddTask06",
       "value": "06添加任务"
+    },
+    {
+      "name": "createTask",
+      "value": "新建任务"
+    },
+    {
+      "name": "title",
+      "value": "标题"
+    },
+    {
+      "name": "placeholder_inputTaskName",
+      "value": "请输入任务的名称"
     }
   ]
 }
