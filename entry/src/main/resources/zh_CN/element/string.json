@@ -10,7 +10,7 @@
     },
     {
       "name": "EntryAbility_label",
-      "value": "label"
+      "value": "学习项目"
     },
     {
       "name": "login",
@@ -91,6 +91,10 @@
     {
       "name": "OtherAbility_label",
       "value": "label"
+    },
+    {
+      "name": "AddTask06",
+      "value": "06添加任务"
     }
   ]
 }

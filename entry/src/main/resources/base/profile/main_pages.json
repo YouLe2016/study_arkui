@@ -7,6 +7,8 @@
     "pages/entry/test2Page",
     "pages/entry/for_each/StudyForEach",
     "pages/other/OtherPage",
-    "pages/entry/layout/LayoutPage"
+    "pages/entry/layout/LayoutPage",
+    "pages/HomePage",
+    "pages/example/AddTaskPage"
   ]
 }
