@@ -105,8 +105,32 @@
       "value": "标题"
     },
     {
-      "name": "placeholder_inputTaskName",
+      "name": "placeholder_inputTitle",
       "value": "请输入任务的名称"
+    },
+    {
+      "name": "date",
+      "value": "日期"
+    },
+    {
+      "name": "placeholder_inputDate",
+      "value": "请选择日期"
+    },
+    {
+      "name": "time",
+      "value": "时间"
+    },
+    {
+      "name": "placeholder_inputTime",
+      "value": "请选择时间"
+    },
+    {
+      "name": "description",
+      "value": "描述"
+    },
+    {
+      "name": "placeholder_inputDescription",
+      "value": "请输入任务详情"
     }
   ]
 }
