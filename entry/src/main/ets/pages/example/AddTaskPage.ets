@@ -23,9 +23,17 @@ struct AddTaskPage {
 
       Text($r("app.string.time"))
         .titleTextStyle()
-      TextInput({
-        placeholder: $r("app.string.placeholder_inputTime")
-      }) .myShowUnderline()
+      Row(){
+        TextInput({
+          placeholder: $r("app.string.placeholder_inputTime_start")
+        }).myShowUnderline()
+          .layoutWeight(1)
+        Blank(10)
+        TextInput({
+          placeholder: $r("app.string.placeholder_inputTime_end")
+        }) .myShowUnderline()
+          .layoutWeight(1)
+      }
 
       Text($r("app.string.description"))
         .titleTextStyle()
@@ -33,23 +41,28 @@ struct AddTaskPage {
         placeholder: $r("app.string.placeholder_inputDescription")
       }) .myShowUnderline()
 
+      Text($r("app.string.type"))
+        .titleTextStyle()
+      Row() {
+        Radio({ value: 'type1', group: 'typeGroup' })
+        Text("类型1")
+        Blank().width(10)
+        Radio({ value: 'type2', group: 'typeGroup' })
+        Text("类型2")
+      }
+      .margin({ top: 10 })
+      .width('100%')
+      .justifyContent(FlexAlign.Start)
     }
     .height('100%')
     .width('100%')
     .padding(16)
   }
 
-  // 感觉放在外面更方便啊
-  // @Styles
-  // titleCommonStyle() {
-  //   // .backgroundColor(Color.Pink)
-  //   // .align(Alignment.Start)
-  //   // 设置Flex布局中的子元素的对齐方式
-  //   .alignSelf(ItemAlign.Start)
-  //   .margin({ top: 16 })
-  // }
+  // titleCommonStyle()方法，原来的位置
 }
 
+// 感觉放在外面更方便啊
 @Styles
 function titleCommonStyle() {
   // .backgroundColor(Color.Pink)
@@ -80,10 +93,14 @@ function myShowUnderline() {
   // .backgroundColor(Color.Transparent)
   // ------------------------------------------------
   // .backgroundColor(Color.Pink)
-
+  .fontColor('#333333')
+  .fontSize(14)
   .showUnderline(true)
   .underlineColor('#666666')
   .placeholderColor('#ff120f99')
+  .placeholderFont({
+    size: 14,
+  })
   .padding({ top: 8, bottom: 8 })
 }
 
