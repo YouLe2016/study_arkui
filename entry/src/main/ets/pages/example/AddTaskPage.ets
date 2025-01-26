@@ -1,5 +1,7 @@
+@Entry
 @Component
 struct AddTaskPage {
+  @State a :string = ""
   build() {
     Column() {
       Text($r("app.string.createTask"))
@@ -104,7 +106,7 @@ function myShowUnderline() {
   .padding({ top: 8, bottom: 8 })
 }
 
-@Entry
+
 @Preview
 @Component
 struct AddTaskPagePreview {
