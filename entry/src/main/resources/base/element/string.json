@@ -97,6 +97,10 @@
       "value": "06添加任务"
     },
     {
+      "name": "Storage09",
+      "value": "09LocalStorage"
+    },
+    {
       "name": "createTask",
       "value": "新建任务"
     },

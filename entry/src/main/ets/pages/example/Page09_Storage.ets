@@ -4,6 +4,9 @@ import { StorageChild } from "../../components/StorageChild"
 // 初始化方式一
 const storage: LocalStorage = new LocalStorage()
 storage.setOrCreate(LocalStorageConst.KEY_USERNAME, "小王")
+// 会多次执行。每次打开这个页面都会执行一次，返回这个页面还没有测试。
+// 进入一个页面有打开和返回两种形式
+console.log("LocalStorage 初始化")
 
 // 初始化方式二
 // const para: Record<string, number> = { 'PropA': 47 }
