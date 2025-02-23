@@ -143,6 +143,10 @@
     {
       "name": "type",
       "value": "类型"
+    },
+    {
+      "name": "tag",
+      "value": "标签"
     }
   ]
 }

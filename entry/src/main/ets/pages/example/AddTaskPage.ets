@@ -1,19 +1,57 @@
+import { LengthMetrics } from '@kit.ArkUI'
+import { TaskModel } from '../viewmodel/TaskModel'
+
 @Entry
-@Component
+@ComponentV2
 struct AddTaskPage {
-  @State a :string = ""
+  @Local bean: TaskModel = new TaskModel()
+  private selectedDate: Date = new Date()
+
+  showCalendarPickerDialog = () => {
+    CalendarPickerDialog.show({
+      selected: this.selectedDate,
+      acceptButtonStyle: {
+        fontColor: '#2787d9',
+        fontSize: '16fp',
+        backgroundColor: '#f7f7f7',
+        borderRadius: 10
+      },
+      cancelButtonStyle: {
+        fontColor: Color.Red,
+        fontSize: '16fp',
+        backgroundColor: '#f7f7f7',
+        borderRadius: 10
+      },
+      onAccept: (date: Date) => {
+        // 当弹出框再次弹出时显示选中的是上一次确定的日期
+        this.selectedDate = date
+        console.log(date.toString())
+        console.log(date.toDateString())
+        console.log(date.toLocaleDateString())
+        console.log(date.toTimeString())
+        console.log(date.toLocaleTimeString())
+      }
+    })
+  }
+
+  log = ()=> {
+    console.log(`title = ${this.bean.title}`)
+  }
+
   build() {
     Column() {
       Text($r("app.string.createTask"))
         .fontSize(26)
         .fontWeight(FontWeight.Bold)
+        .onClick(this.log)
 
       Text($r("app.string.title"))
         .fontColor('#666666')
         .fontSize(16)
         .titleCommonStyle()
       TextInput({
-        placeholder: $r("app.string.placeholder_inputTitle")
+        placeholder: $r("app.string.placeholder_inputTitle"),
+        text: $$this.bean.title
       }).myShowUnderline()
 
       Text($r("app.string.date"))
@@ -22,6 +60,7 @@ struct AddTaskPage {
         placeholder: $r("app.string.placeholder_inputDate")
       })
         .myShowUnderline()
+        .onClick(this.showCalendarPickerDialog)
 
       Text($r("app.string.time"))
         .titleTextStyle()
@@ -40,7 +79,8 @@ struct AddTaskPage {
       Text($r("app.string.description"))
         .titleTextStyle()
       TextInput({
-        placeholder: $r("app.string.placeholder_inputDescription")
+        placeholder: $r("app.string.placeholder_inputDescription"),
+        text: $$this.bean.description
       }) .myShowUnderline()
 
       Text($r("app.string.type"))
@@ -55,6 +95,30 @@ struct AddTaskPage {
       .margin({ top: 10 })
       .width('100%')
       .justifyContent(FlexAlign.Start)
+
+      Text($r("app.string.tag"))
+        .titleTextStyle()
+
+      Flex({
+        wrap: FlexWrap.Wrap,
+        space: {
+          main: LengthMetrics.vp(5)
+        },
+      }) {
+        Text("工作")
+          .fontSize(12)
+          .fontColor(Color.White)
+          .backgroundColor(Color.Brown)
+          .padding({ left: 4, right: 4, top: 4, bottom: 4})
+
+        Text("娱乐")
+          .fontSize(12)
+          .fontColor(Color.White)
+          .backgroundColor(Color.Gray)
+          .padding({ left: 4, right: 4, top: 4, bottom: 4})
+      }
+      .margin({ top: 10 })
+      .width('100%')
     }
     .height('100%')
     .width('100%')
