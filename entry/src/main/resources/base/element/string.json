@@ -149,8 +149,12 @@
       "value": "标签"
     },
     {
-      "name": "state_page",
-      "value": "状态管理"
+      "name": "array_state_page",
+      "value": "数组状态管理"
+    },
+    {
+      "name": "array_state_withP_page",
+      "value": "数组状态管理(presenter)"
     }
   ]
 }

@@ -11,6 +11,7 @@
     "pages/HomePage",
     "pages/example/AddTaskPage",
     "pages/example/Page09_Storage",
-    "pages/entry/state/StatePage"
+    "pages/entry/state/ArrayStatePage",
+    "pages/entry/state/ArrayStateWithPresenterPage"
   ]
 }

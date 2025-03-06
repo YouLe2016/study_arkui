@@ -13,8 +13,11 @@ struct HomePage {
         Button($r('app.string.Storage09')).onClick(() => {
           RouterUtils.openPage(RouterConst.PATH_STORAGE)
         })
-        Button($r('app.string.state_page')).onClick(() => {
-          RouterUtils.openPage(RouterConst.PATH_STATE_PAGE)
+        Button($r('app.string.array_state_page')).onClick(() => {
+          RouterUtils.openPage(RouterConst.PATH_ArrayStatePage)
+        })
+        Button($r('app.string.array_state_withP_page')).onClick(() => {
+          RouterUtils.openPage(RouterConst.PATH_ArrayStateWithPresenterPage)
         })
       }
       .height('100%')
