@@ -18,7 +18,7 @@ export struct Page09_Storage {
   @State message: string = "Page09_Storage"
   @LocalStorageProp(LocalStorageConst.KEY_USERNAME) username: string = "默认值"
   @LocalStorageLink(LocalStorageConst.KEY_USERNAME) username2: string = "默认值"
-  clickUsername = () => {
+  private clickUsername = () => {
     this.username += 1
   }
   clickUsername2 = () => {
@@ -38,6 +38,9 @@ export struct Page09_Storage {
         .fontSize(20)
         .fontColor(Color.Orange)
         .onClick(this.clickUsername2)
+      Blank(24)
+      StorageChild()
+      Divider()
       StorageChild()
     }
   }

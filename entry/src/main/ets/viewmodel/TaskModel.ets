@@ -1,4 +1,4 @@
-import { TaskConst } from "../../common/TaskConst"
+import { TaskConst } from "../common/TaskConst"
 
 export class TaskModel {
   id: string = ""

@@ -1,5 +1,5 @@
 import { LengthMetrics } from '@kit.ArkUI'
-import { TaskModel } from '../viewmodel/TaskModel'
+import { TaskModel } from '../../viewmodel/TaskModel'
 
 @Entry
 @ComponentV2

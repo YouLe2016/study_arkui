@@ -147,6 +147,10 @@
     {
       "name": "tag",
       "value": "标签"
+    },
+    {
+      "name": "state_page",
+      "value": "状态管理"
     }
   ]
 }

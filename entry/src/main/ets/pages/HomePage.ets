@@ -13,6 +13,9 @@ struct HomePage {
         Button($r('app.string.Storage09')).onClick(() => {
           RouterUtils.openPage(RouterConst.PATH_STORAGE)
         })
+        Button($r('app.string.state_page')).onClick(() => {
+          RouterUtils.openPage(RouterConst.PATH_STATE_PAGE)
+        })
       }
       .height('100%')
       .width('100%')

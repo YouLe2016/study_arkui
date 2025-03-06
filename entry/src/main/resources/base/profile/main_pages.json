@@ -10,6 +10,7 @@
     "pages/entry/layout/LayoutPage",
     "pages/HomePage",
     "pages/example/AddTaskPage",
-    "pages/example/Page09_Storage"
+    "pages/example/Page09_Storage",
+    "pages/entry/state/StatePage"
   ]
 }
