@@ -1,9 +1,15 @@
 import { ColorUtils } from '../../../common/ColorUtils'
 
+/**
+ * 没有页面，已替换成 ArrayStateWithPresenterPage.ets。
+ *
+ * UU跑腿项目中我们用的这种方式
+ */
 @Entry
 @Component
 struct ArrayStateWithPresenterPage {
-  @State private presenter: Presenter = new Presenter(["1", "2", "3", "4"])
+  @State arr: string[] = ["1", "2", "3", "4"]
+  private presenter = new Presenter(this.arr)
 
   build() {
     Column() {
@@ -21,44 +27,22 @@ struct ArrayStateWithPresenterPage {
           this.presenter.reset()
         })
       }
-      ShowList({
-        arr: this.presenter.arr
-      })
-    }
-  }
-}
-
-@Component
-struct ShowList {
-  @ObjectLink arr: ObservedArray<string>
-
-  build() {
-    Column() {
       ForEach(this.arr, (item: string) => {
         Text(item)
           .backgroundColor(ColorUtils.getRandomColor())
           .width('100%')
           .padding(8)
-          .onClick(()=> {
-            const index = this.arr.indexOf(item)
-            // TypeError: Callable is false。
-            // 自定义的ObservedArray不支持splice
-            // todo: 已反馈工单，尚未解决
-            this.arr.splice(index, 1)
-          })
       })
     }
   }
 }
 
-@Observed
 class Presenter {
-  @Track
-  arr: ObservedArray<string>
-  private count: number
+  arr: string[]
+  count: number
 
   constructor(arr: string[]) {
-    this.arr = new ObservedArray<string>(arr)
+    this.arr = arr
     this.count = this.arr.length
   }
 
@@ -70,11 +54,8 @@ class Presenter {
     // 这样是不行的
     // this.arr = ["1", "2", "3"]
 
-    // 这样也是可以的
-    this.arr = new ObservedArray<string>(["1", "2", "3"])
-
-    // this.arr.length = 0
-    // this.arr.push("1", "2", "3")
+    this.arr.length = 0
+    this.arr.push("1", "2", "3")
   }
 
   delete(type: number) {
@@ -83,12 +64,5 @@ class Presenter {
     } else if (type == 2) {
       this.arr.pop()
     }
-  }
-}
-
-@Observed
-class ObservedArray<T> extends Array<T> {
-  constructor(args: T[]) {
-    super(...args);
   }
 }

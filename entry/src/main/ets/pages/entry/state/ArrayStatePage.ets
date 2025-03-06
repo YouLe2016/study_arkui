@@ -24,6 +24,10 @@ struct ArrayStatePage {
           .backgroundColor(ColorUtils.getRandomColor())
           .width('100%')
           .padding(8)
+          .onClick(()=> {
+            const index = this.arr.indexOf(item)
+            this.arr.splice(index, 1)
+          })
       })
     }
   }
