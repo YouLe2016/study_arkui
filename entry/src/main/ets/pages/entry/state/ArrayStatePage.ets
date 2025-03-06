@@ -1,7 +1,8 @@
 import { ColorUtils } from "../../../common/ColorUtils"
 
+@Entry
 @Component
-export struct ArrayStatePage {
+struct ArrayStatePage {
   @State arr: string[] = ["1", "2", "3", "4"]
   count: number = 4
 
@@ -24,16 +25,6 @@ export struct ArrayStatePage {
           .width('100%')
           .padding(8)
       })
-    }
-  }
-}
-
-@Preview
-@Component
-struct ArrayStatePagePreview {
-  build() {
-    Stack() {
-      ArrayStatePage()
     }
   }
 }
