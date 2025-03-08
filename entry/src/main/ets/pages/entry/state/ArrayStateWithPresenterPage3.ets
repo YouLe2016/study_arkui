@@ -1,15 +1,12 @@
 import { ColorUtils } from '../../../common/ColorUtils'
 
 /**
- * 没有页面，已替换成 ArrayStateWithPresenterPage.ets。
- *
- * UU跑腿项目中我们用的这种方式
+ * 状态管理V2版本，还是很给力的
  */
 @Entry
-@Component
-struct ArrayStateWithPresenterPage2 {
-  @State arr: string[] = ["1", "2", "3", "4"]
-  private presenter = new Presenter(this.arr)
+@ComponentV2
+struct ArrayStateWithPresenterPage {
+  @Local presenter: Presenter = new Presenter(["1", "2", "3", "4"])
 
   build() {
     Column() {
@@ -27,22 +24,40 @@ struct ArrayStateWithPresenterPage2 {
           this.presenter.reset()
         })
       }
-      ForEach(this.arr, (item: string, index) => {
+      ShowList({
+        arr: this.presenter.arr,
+        deleteIndex: (index: number)=>{
+          this.presenter.deleteIndex(index)
+        }
+      })
+    }
+  }
+}
+
+@ComponentV2
+struct ShowList {
+  @Require @Param arr: string[] = []
+  @Event deleteIndex: (index: number) => void = () => {}
+
+  build() {
+    Column() {
+      ForEach(this.arr, (item: string, index: number) => {
         Text(item)
           .backgroundColor(ColorUtils.getRandomColor())
           .width('100%')
           .padding(8)
           .onClick(()=> {
-            this.presenter.deleteIndex(index)
+            this.deleteIndex(index)
           })
       })
     }
   }
 }
 
+@ObservedV2
 class Presenter {
-  arr: string[]
-  count: number
+  @Trace arr: string[]
+  private count: number = 0
 
   constructor(arr: string[]) {
     this.arr = arr
@@ -54,11 +69,11 @@ class Presenter {
   }
 
   reset() {
-    // 这样是不行的
-    // this.arr = ["1", "2", "3"]
+    // 这样也可以
+    this.arr = ["1", "2", "3"]
 
-    this.arr.length = 0
-    this.arr.push("1", "2", "3")
+    // this.arr.length = 0
+    // this.arr.push("1", "2", "3")
   }
 
   delete(type: number) {
