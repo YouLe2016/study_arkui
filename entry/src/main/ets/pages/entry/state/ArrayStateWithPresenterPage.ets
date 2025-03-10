@@ -3,7 +3,7 @@ import { ColorUtils } from '../../../common/ColorUtils'
 @Entry
 @Component
 struct ArrayStateWithPresenterPage {
-  @State private presenter: Presenter = new Presenter(["1", "2", "3", "4"])
+  @State private presenter: Presenter = new Presenter()
 
   build() {
     Column() {
@@ -43,7 +43,6 @@ struct ShowList {
             const index = this.arr.indexOf(item)
             // TypeError: Callable is false。
             // 自定义的ObservedArray不支持splice
-            // todo: 已反馈工单，尚未解决
             this.arr.splice(index, 1)
           })
       })
@@ -57,8 +56,8 @@ class Presenter {
   arr: ObservedArray<string>
   private count: number
 
-  constructor(arr: string[]) {
-    this.arr = new ObservedArray<string>(arr)
+  constructor() {
+    this.arr = new ObservedArray<string>(...["1", "2", "3", "4"])
     this.count = this.arr.length
   }
 
@@ -71,7 +70,7 @@ class Presenter {
     // this.arr = ["1", "2", "3"]
 
     // 这样也是可以的
-    this.arr = new ObservedArray<string>(["1", "2", "3"])
+    this.arr = new ObservedArray<string>(...["1", "2", "3"])
 
     // this.arr.length = 0
     // this.arr.push("1", "2", "3")
@@ -88,7 +87,8 @@ class Presenter {
 
 @Observed
 class ObservedArray<T> extends Array<T> {
-  constructor(args: T[]) {
-    super(...args);
-  }
+  // 不可以定义构造函数，会导致splice操作报异常TypeError: Callable is false。
+  // constructor(args: T[]) {
+  //   super(...args);
+  // }
 }
