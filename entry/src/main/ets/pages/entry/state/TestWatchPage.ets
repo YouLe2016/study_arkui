@@ -8,8 +8,8 @@ struct TestWatchPage {
         bean: this.bean
       })
       Button("点击").onClick(() => {
-        // 跟上一次结果相同
-        this.bean.str = "点击了"
+        // 每次都会刷新
+        this.bean = new ShowCardBean("点击了")
       })
     }
   }
@@ -19,7 +19,7 @@ struct TestWatchPage {
 struct ShowCard {
   @Watch("onValueChanged") @Prop bean: ShowCardBean
 
-  // 只调用了一次
+  // 多次调用
   private onValueChanged() {
     console.log('onValueChanged', this.bean.str)
   }
