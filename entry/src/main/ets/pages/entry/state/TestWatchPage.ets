@@ -1,14 +1,15 @@
 @Component
 @Entry
 struct TestWatchPage {
-  @State msg: string = "你好，世界"
+  @State bean: ShowCardBean = new ShowCardBean("你好，世界")
   build() {
     Column() {
       ShowCard({
-        str: this.msg
+        bean: this.bean
       })
       Button("点击").onClick(() => {
-        this.msg = "点击了"
+        // 跟上一次结果相同
+        this.bean.str = "点击了"
       })
     }
   }
@@ -16,17 +17,17 @@ struct TestWatchPage {
 
 @Component
 struct ShowCard {
-  @Watch("onValueChanged") @Prop str: string
+  @Watch("onValueChanged") @Prop bean: ShowCardBean
 
   // 只调用了一次
   private onValueChanged() {
-    console.log('onValueChanged', this.str)
+    console.log('onValueChanged', this.bean.str)
   }
 
   build() {
     Column() {
       // 只刷新了这一部分
-      Text(this.str)
+      Text(this.bean.str)
         .text1Style()
         .backgroundColor(this.getRandomColor())
     }
@@ -41,7 +42,11 @@ struct ShowCard {
 }
 
 class ShowCardBean {
-  str: string = ""
+  str: string
+
+  constructor(str: string) {
+    this.str = str
+  }
 }
 
 @Extend(Text)
