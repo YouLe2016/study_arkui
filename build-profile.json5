@@ -34,8 +34,8 @@
   },
   "modules": [
     {
-      "name": "entry",
-      "srcPath": "./entry",
+      "name": "default",
+      "srcPath": "./product/default",
       "targets": [
         {
           "name": "default",
@@ -47,7 +47,7 @@
     },
     {
       "name": "OtherModule",
-      "srcPath": "./OtherModule",
+      "srcPath": "./product/OtherModule",
       "targets": [
         {
           "name": "default",
@@ -68,6 +68,14 @@
           ]
         }
       ]
+    },
+    {
+      "name": "home",
+      "srcPath": "./features/home",
+    },
+    {
+      "name": "order",
+      "srcPath": "./features/order",
     }
   ]
 }
