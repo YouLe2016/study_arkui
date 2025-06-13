@@ -14,9 +14,9 @@ export class BreakpointSystem {
     return BreakpointSystem.instance;
   }
 
-  private smListener: mediaquery.MediaQueryListener | null = null
-  private mdListener?: mediaquery.MediaQueryListener | null = null
-  private lgListener?: mediaquery.MediaQueryListener | null = null
+  private smListener?: mediaquery.MediaQueryListener
+  private mdListener?: mediaquery.MediaQueryListener
+  private lgListener?: mediaquery.MediaQueryListener
 
   private onBreakpointChanged(breakpoint: string, mediaQueryResult: mediaquery.MediaQueryResult) {
     const result = mediaQueryResult.matches as boolean
@@ -52,10 +52,10 @@ export class BreakpointSystem {
 
   unregister() {
     this.smListener?.off('change')
-    this.smListener = null
+    this.smListener = undefined
     this.mdListener?.off('change')
-    this.mdListener = null
+    this.mdListener = undefined
     this.lgListener?.off('change')
-    this.lgListener = null
+    this.lgListener = undefined
   }
 }
