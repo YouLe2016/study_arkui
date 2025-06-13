@@ -2,16 +2,11 @@ import { common } from '@kit.AbilityKit';
 import { mediaquery, window } from '@kit.ArkUI';
 
 export class DeviceOrientationUtils {
-  private static instance: DeviceOrientationUtils;
-
   private constructor() {
   }
 
   static getInstance(): DeviceOrientationUtils {
-    if (!DeviceOrientationUtils.instance) {
-      DeviceOrientationUtils.instance = new DeviceOrientationUtils();
-    }
-    return DeviceOrientationUtils.instance;
+    return new DeviceOrientationUtils();
   }
 
   setOrientation(uiContext: UIContext, orientation: DeviceOrientation) {

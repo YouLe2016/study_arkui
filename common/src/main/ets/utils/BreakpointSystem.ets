@@ -2,16 +2,11 @@ import { mediaquery } from '@kit.ArkUI';
 import { BreakpointConstants } from '../constants/BreakpointConstants';
 
 export class BreakpointSystem {
-  private static instance: BreakpointSystem;
-
   private constructor() {
   }
 
   public static getInstance(): BreakpointSystem {
-    if (!BreakpointSystem.instance) {
-      BreakpointSystem.instance = new BreakpointSystem();
-    }
-    return BreakpointSystem.instance;
+    return new BreakpointSystem();
   }
 
   private smListener?: mediaquery.MediaQueryListener
