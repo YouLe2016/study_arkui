@@ -17,7 +17,8 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
     // windowStage.loadContent("pages/entry/state/TestWatchPage", (err) => {
-    windowStage.loadContent("pages/Index", (err) => {
+    // windowStage.loadContent("pages/Index", (err) => {
+    windowStage.loadContent("pages/woniu/Page01_media", (err) => {
     // windowStage.loadContent(RouterConst.PATH_ArrayStateWithPresenterPage, (err) => {
     // windowStage.loadContent(RouterConst.PATH_ArrayStatePage, (err) => {
 

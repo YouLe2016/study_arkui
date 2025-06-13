@@ -22,7 +22,8 @@ struct Page01_media {
   private onPortrait(mediaQueryResult: mediaquery.MediaQueryResult) {
     const result = mediaQueryResult.matches as boolean
     // 【注意】这里会调用2次
-    // console.log("onPortrait: isLandscape=" + result)
+    // Fix: 现在只会调用一次了，似乎已经修复了。很奇怪啊。2025-06-13
+    console.log("onPortrait: isLandscape=" + result)
 
     // 当满足媒体查询条件时，触发回调
     if (result) { // 若设备为横屏状态，更改相应的页面布局
