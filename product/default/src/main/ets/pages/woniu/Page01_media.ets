@@ -1,6 +1,7 @@
 // import mediaquery from '@ohos.mediaquery';
 import { mediaquery, window } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
+import { DeviceOrientation, DeviceOrientationUtils } from '@ohos/common';
 
 type MediaQueryResult = "横屏" | "竖屏" | "";
 
@@ -9,21 +10,23 @@ type MediaQueryResult = "横屏" | "竖屏" | "";
 struct Page01_media {
   private message: string = '媒体查询技术';
 
-  @State
-  @Watch("mediaQueryResultChanged")
-  private mediaQueryResult: MediaQueryResult = '';
+  @State private mediaQueryResult: MediaQueryResult = '';
   private isLandscape = false
+
+  private deviceOrientationUtils: DeviceOrientationUtils = DeviceOrientationUtils.getInstance();
 
   // 当设备横屏时条件成立
   private listener: mediaquery.MediaQueryListener = this.getUIContext()
     .getMediaQuery()
     .matchMediaSync('(orientation: landscape)');
 
-  private onPortrait(mediaQueryResult: mediaquery.MediaQueryResult) {
+  private async onPortrait(mediaQueryResult: mediaquery.MediaQueryResult) {
     const result = mediaQueryResult.matches as boolean
     // 【注意】这里会调用2次
     // Fix: 现在只会调用一次了，似乎已经修复了。很奇怪啊。2025-06-13
     console.log("onPortrait: isLandscape=" + result)
+    const orientation = await this.deviceOrientationUtils.getOrientation(this.getUIContext())
+    console.log("onPortrait: 工具获取=" + orientation)
 
     // 当满足媒体查询条件时，触发回调
     if (result) { // 若设备为横屏状态，更改相应的页面布局
@@ -31,24 +34,6 @@ struct Page01_media {
     } else {
       this.mediaQueryResult = '竖屏';
     }
-  }
-
-  private mediaQueryResultChanged() {
-    console.log("mediaQueryResultChanged: " + this.mediaQueryResult)
-  }
-
-  // 改变设备横竖屏状态函数
-  private changeOrientation(isLandscape: boolean) {
-    // 获取UIAbility实例的上下文信息
-    let context: common.UIAbilityContext = this.getUIContext()
-      .getHostContext() as common.UIAbilityContext;
-    // 调用该接口手动改变设备横竖屏状态
-    window.getLastWindow(context)
-      .then((lastWindow) => {
-        lastWindow.setPreferredOrientation(
-          isLandscape ? window.Orientation.LANDSCAPE : window.Orientation.PORTRAIT
-        )
-      });
   }
 
   aboutToAppear(): void {
@@ -76,7 +61,10 @@ struct Page01_media {
       Text(this.mediaQueryResult)
       Button("切换").onClick(() => {
         this.isLandscape = !this.isLandscape;
-        this.changeOrientation(this.isLandscape);
+        this.deviceOrientationUtils.setOrientation(
+          this.getUIContext(),
+          this.isLandscape ? DeviceOrientation.LANDSCAPE : DeviceOrientation.PORTRAIT
+        )
       })
     }
     .height('100%')
