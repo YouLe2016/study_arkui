@@ -17,6 +17,7 @@
     "pages/entry/state/ArrayStateWithPresenterPage2",
     "pages/entry/state/TestWatchPage",
     "pages/entry/testPage",
-    "pages/woniu/Page01_media"
+    "pages/woniu/Page01_media",
+    "pages/entry/state/v2/ObservedV2Page"
   ]
 }
